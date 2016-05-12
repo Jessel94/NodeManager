@@ -5,11 +5,11 @@ using System.Web;
 
 namespace NodeManagerClean.Models
 {
-    public class Product
+    public class Container
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Category { get; set; }
-        public decimal Price { get; set; }
+        public int QueuId { get; set; }
+        public DateTime LastChecked { get; set; }
     }
 }
