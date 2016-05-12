@@ -8,8 +8,8 @@ namespace NodeManagerClean.Models
     public class Container
     {
         public int Id { get; set; }
+        public int QueueId { get; set; }
         public string Name { get; set; }
-        public int QueuId { get; set; }
         public DateTime LastChecked { get; set; }
     }
 }
