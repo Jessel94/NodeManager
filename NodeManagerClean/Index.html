@@ -16,6 +16,17 @@
         <p id="Container" />
     </div>
 
+    <div>
+        <form id="saveContainerForm" method="post">
+            <h3>Create a new Container</h3>
+            <p>
+                <label for="containerName">Container Name:</label>
+                <input type="text" name="Name" />
+            </p>
+            <input type="button" id="saveContainer" value="Save" />
+        </form>
+    </div>
+
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
     var uri = 'api/Containers';
@@ -32,6 +43,16 @@
           });
     });
 
+    $('#saveContainer').click(function () {
+        $.post(uri,
+              $("#saveContainerForm").serialize(),
+              function (value) {
+                  $('#containers').append('<li>' + value.Name + '</li>');
+              },
+              "json"
+        );
+    });
+
     function formatItem(item) {
       return item.Name + ": " + item.Id;
     }
@@ -46,6 +67,8 @@
             $('#Container').text('Error: ' + err);
           });
     }
+
+
     </script>
 </body>
 </html>
