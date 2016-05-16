@@ -43,7 +43,7 @@ namespace NodeManagerClean.Controllers
 
             this.containerRepository.SaveContainer(container);
 
-            var response = Request.CreateResponse<Container>(System.Net.HttpStatusCode.Created, container);
+            var response = Request.CreateResponse(HttpStatusCode.Created, container);
 
             return response;
         }
