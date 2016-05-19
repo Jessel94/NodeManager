@@ -9,6 +9,8 @@ namespace NodeManagerClean.Models
     {
         public int Id { get; set; }
         public int QueueId { get; set; }
+        public string QueueName { get; set; }
+        public string QueuePass { get; set; }
         public string Name { get; set; }
         public DateTime LastChecked { get; set; }
     }

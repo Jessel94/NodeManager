@@ -39,6 +39,8 @@ namespace NodeManagerClean.Controllers
         {
             container.Id = 4;
             container.QueueId = 90;
+            container.QueueName = "newname";
+            container.QueuePass = "newpass";
             container.LastChecked = DateTime.Today;
 
             this.containerRepository.SaveContainer(container);
