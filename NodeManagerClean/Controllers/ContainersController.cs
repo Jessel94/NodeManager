@@ -36,12 +36,16 @@ namespace NodeManagerClean.Controllers
         }
 
         public HttpResponseMessage Post(Container container)
-        {
+        {            
             container.Id = 4;
-            container.QueueId = 90;
+            container.HostName = "localhost";
+            container.QueueId = "90";
             container.QueueName = "newname";
             container.QueuePass = "newpass";
             container.LastChecked = DateTime.Today;
+
+            //Queue.Send.Main(container, "test1234");
+            //container.HostName = Queue.Recieve.Main(container);
 
             this.containerRepository.SaveContainer(container);
 

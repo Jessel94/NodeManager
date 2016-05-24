@@ -57,3 +57,5 @@ F:\GitHub\NodeManager\NodeManagerClean\obj\Debug\NodeManagerClean.pdb
 D:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.dll
 D:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.ServiceModel.dll
 D:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.xml
+D:\GitHub\NodeManager\NodeManagerClean\bin\EasyNetQ.dll
+D:\GitHub\NodeManager\NodeManagerClean\bin\EasyNetQ.xml

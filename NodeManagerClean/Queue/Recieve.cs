@@ -1,4 +1,5 @@
-﻿using RabbitMQ.Client;
+﻿using NodeManagerClean.Models;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Text;
@@ -7,29 +8,36 @@ namespace NodeManagerClean.Queue
 {
     public class Recieve
     {
-        public static void Main(string hostname, string queueId)
+        public static string Main(Container container)
         {
-            var factory = new ConnectionFactory() { HostName = hostname };
+            var factory = new ConnectionFactory();
+            factory.HostName = container.HostName;
+            factory.Port = AmqpTcpEndpoint.UseDefaultPort;
+
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: queueId,
+                channel.QueueDeclare(queue: container.QueueId,
                                      durable: true,
                                      exclusive: false,
                                      autoDelete: false,
                                      arguments: null);
 
+                string message;
+                message = "NO DATA";
+
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += (model, ea) =>
                 {
                     var body = ea.Body;
-                    var message = Encoding.UTF8.GetString(body);
+                    message = Encoding.UTF8.GetString(body);
                     Console.WriteLine(" [x] Received {0}", message);
                     channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                 };
-                channel.BasicConsume(queue: queueId,
+                channel.BasicConsume(queue: container.QueueId,
                                      noAck: false,
                                      consumer: consumer);
+                return message;
             }
         }
     }

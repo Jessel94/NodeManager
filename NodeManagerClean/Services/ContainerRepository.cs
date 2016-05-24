@@ -24,7 +24,8 @@ namespace NodeManagerClean.Services
                         {
                             Id = 1,
                             Name = "Dock 1",
-                            QueueId = 1,
+                            HostName = "192.168.0.1",
+                            QueueId = "1",
                             QueueName = "dockname",
                             QueuePass = "dockpass",
                             LastChecked = DateTime.Today.AddDays(-1)
@@ -33,7 +34,8 @@ namespace NodeManagerClean.Services
                         {
                             Id = 2,
                             Name = "Swarm stuffs",
-                            QueueId = 45,
+                            HostName = "192.168.0.2",
+                            QueueId = "45",
                             QueueName = "swarmname",
                             QueuePass = "swarmpass",
                             LastChecked = DateTime.Today
@@ -42,7 +44,8 @@ namespace NodeManagerClean.Services
                         {
                             Id = 3,
                             Name = "FBI Survailence container",
-                            QueueId = 80,
+                            HostName = "192.168.0.3",
+                            QueueId = "80",
                             QueueName = "23872834902347283492034-20=423424",
                             QueuePass = "203984293042837823084375834583453",
                             LastChecked = DateTime.Today.AddHours(-1)
@@ -69,7 +72,7 @@ namespace NodeManagerClean.Services
                     {
                         Id = 0,
                         Name = "Placeholder",
-                        QueueId = 0,
+                        QueueId = "0",
                         LastChecked = DateTime.Today
                     }
                 };

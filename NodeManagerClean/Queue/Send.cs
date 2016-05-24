@@ -1,4 +1,5 @@
-﻿using RabbitMQ.Client;
+﻿using NodeManagerClean.Models;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,16 @@ namespace NodeManagerClean.Queue
 {
     public class Send
     {
-        public static void Main(string hostname, string queueId, string message)
+        public static void Main(Container container, string message)
         {
-            var factory = new ConnectionFactory() { HostName = hostname };
+            var factory = new ConnectionFactory();
+            factory.HostName = container.HostName;
+            factory.Port = AmqpTcpEndpoint.UseDefaultPort;
+
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: queueId,
+                channel.QueueDeclare(queue: container.QueueId,
                                      durable: true,
                                      exclusive: false,
                                      autoDelete: false,
@@ -27,7 +31,7 @@ namespace NodeManagerClean.Queue
                 properties.Persistent = true;
 
                 channel.BasicPublish(exchange: "",
-                                     routingKey: queueId,
+                                     routingKey: container.QueueId,
                                      basicProperties: properties,
                                      body: body);
 
