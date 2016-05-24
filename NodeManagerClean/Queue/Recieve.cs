@@ -25,9 +25,10 @@ namespace NodeManagerClean.Queue
                     var body = ea.Body;
                     var message = Encoding.UTF8.GetString(body);
                     Console.WriteLine(" [x] Received {0}", message);
+                    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                 };
-                channel.BasicConsume(queue: "hello",
-                                     noAck: true,
+                channel.BasicConsume(queue: queueId,
+                                     noAck: false,
                                      consumer: consumer);
             }
         }

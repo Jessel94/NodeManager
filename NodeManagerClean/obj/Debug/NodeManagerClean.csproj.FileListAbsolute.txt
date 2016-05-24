@@ -54,3 +54,6 @@ F:\GitHub\NodeManager\NodeManagerClean\bin\System.Web.Http.WebHost.xml
 F:\GitHub\NodeManager\NodeManagerClean\obj\Debug\NodeManagerClean.csprojResolveAssemblyReference.cache
 F:\GitHub\NodeManager\NodeManagerClean\obj\Debug\NodeManagerClean.dll
 F:\GitHub\NodeManager\NodeManagerClean\obj\Debug\NodeManagerClean.pdb
+D:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.dll
+D:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.ServiceModel.dll
+D:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.xml
