@@ -1,4 +1,5 @@
-﻿using NodeManagerClean.Models;
+﻿using NodeManagerClean.Controllers;
+using NodeManagerClean.Models;
 using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,12 @@ namespace NodeManagerClean.Queue
         public static void Main(Container container, string message)
         {
             var factory = new ConnectionFactory();
-            factory.HostName = container.HostName;
+
+            var QueueID = container.QueueId;
+            var queuesController = new QueuesController();
+            var queue = queuesController.GetQueue(QueueID);
+            factory.HostName = queue.HostName;
+
             factory.Port = AmqpTcpEndpoint.UseDefaultPort;
 
             using (var connection = factory.CreateConnection())

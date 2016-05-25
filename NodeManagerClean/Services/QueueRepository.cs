@@ -6,11 +6,11 @@ using System.Web;
 
 namespace NodeManagerClean.Services
 {
-    public class ContainerRepository
+    public class QueueRepository
     {
-        private const string CacheKey = "ContainerStore";
+        private const string CacheKey = "QueueStore";
 
-        public ContainerRepository()
+        public QueueRepository()
         {
             var ctx = HttpContext.Current;
 
@@ -18,58 +18,58 @@ namespace NodeManagerClean.Services
             {
                 if (ctx.Cache[CacheKey] == null)
                 {
-                    var Containers = new Container[]
+                    var Queues = new Models.Queue[]
                     {
-                        new Container
+                        new Models.Queue
                         {
-                            Id = 1,
-                            Name = "Dock 1",
+                            HostName = "192.168.0.1",
                             QueueId = "1",
-                            LastChecked = DateTime.Today.AddDays(-1)
+                            QueueName = "dockname",
+                            QueuePass = "dockpass",
                         },
-                        new Container
+                        new Models.Queue
                         {
-                            Id = 2,
-                            Name = "Swarm stuffs",
+                            HostName = "192.168.0.2",
                             QueueId = "45",
-                            LastChecked = DateTime.Today
+                            QueueName = "swarmname",
+                            QueuePass = "swarmpass",
                         },
-                        new Container
+                        new Models.Queue
                         {
-                            Id = 3,
-                            Name = "FBI Survailence container",
+                            HostName = "192.168.0.3",
                             QueueId = "80",
-                            LastChecked = DateTime.Today.AddHours(-1)
+                            QueueName = "23872834902347283492034-20=423424",
+                            QueuePass = "203984293042837823084375834583453",
                         }
-                    };
-                    ctx.Cache[CacheKey] = Containers;
+                };
+                    ctx.Cache[CacheKey] = Queues;
                 }
             }
         }
 
 
-        public Container[] GetAllContainers()
+        public Models.Queue[] GetAllQueues()
         {
             var ctx = HttpContext.Current;
 
             if (ctx != null)
             {
-                return (Container[])ctx.Cache[CacheKey];
+                return (Models.Queue[])ctx.Cache[CacheKey];
             }
 
-            return new Container[]
+            return new Models.Queue[]
                 {
-                    new Container
+                    new Models.Queue
                     {
-                        Id = 0,
-                        Name = "Placeholder",
+                        HostName = "temp",
                         QueueId = "0",
-                        LastChecked = DateTime.Today
+                        QueueName = "temp",
+                        QueuePass = "temp"
                     }
                 };
         }
 
-        public bool SaveContainer(Container container)
+        public bool SaveQueue(Models.Queue queue)
         {
             var ctx = HttpContext.Current;
 
@@ -77,8 +77,8 @@ namespace NodeManagerClean.Services
             {
                 try
                 {
-                    var currentData = ((Container[])ctx.Cache[CacheKey]).ToList();
-                    currentData.Add(container);
+                    var currentData = ((Models.Queue[])ctx.Cache[CacheKey]).ToList();
+                    currentData.Add(queue);
                     ctx.Cache[CacheKey] = currentData.ToArray();
 
                     return true;
