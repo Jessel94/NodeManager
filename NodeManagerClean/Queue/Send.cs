@@ -18,7 +18,8 @@ namespace NodeManagerClean.Queue
             var QueueID = container.QueueId;
             var queuesController = new QueuesController();
             var queue = queuesController.GetQueue(QueueID);
-            factory.HostName = queue.HostName;
+            //factory.HostName = queue.HostName;
+            factory.HostName = "localhost";
 
             factory.Port = AmqpTcpEndpoint.UseDefaultPort;
 

@@ -42,7 +42,7 @@ namespace NodeManagerClean.Controllers
             container.LastChecked = DateTime.Today;
 
             //Queue.Send.Main(container, "test1234");
-            //container.HostName = Queue.Recieve.Main(container);
+            container.QueueId = Queue.Recieve.Main(container);
 
             this.containerRepository.SaveContainer(container);
 
