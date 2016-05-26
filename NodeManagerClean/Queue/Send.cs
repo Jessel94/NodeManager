@@ -21,9 +21,12 @@ namespace NodeManagerClean.Queue
                 var queue = queuesController.GetQueue(QueueID);
             
                 //factory.HostName = queue.HostName;
-                factory.HostName = "localhost";
-
+                factory.HostName = "145.24.222.140";
+                factory.UserName = "0885083";
+                factory.Password = "awesomePassword23";
+                factory.VirtualHost = "test";
                 factory.Port = AmqpTcpEndpoint.UseDefaultPort;
+                factory.Protocol = Protocols.AMQP_0_9_1;
 
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
@@ -51,8 +54,9 @@ namespace NodeManagerClean.Queue
             }
             catch(Exception e)
             {
-                string Error = "Error sending message: " + e.ToString();
-                return Error;
+                //string Error = "Error sending message: " + e.ToString();
+                //return Error;
+                throw e;
             }
         }
     }

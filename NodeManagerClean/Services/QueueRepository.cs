@@ -22,21 +22,21 @@ namespace NodeManagerClean.Services
                     {
                         new Models.Queue
                         {
-                            HostName = "localhost",
+                            HostName = "http://145.24.222.140/",
                             QueueId = "1",
                             QueueName = "dockname",
                             QueuePass = "dockpass",
                         },
                         new Models.Queue
                         {
-                            HostName = "localhost",
+                            HostName = "http://145.24.222.140/",
                             QueueId = "45",
                             QueueName = "swarmname",
                             QueuePass = "swarmpass",
                         },
                         new Models.Queue
                         {
-                            HostName = "localhost",
+                            HostName = "http://145.24.222.140/",
                             QueueId = "80",
                             QueueName = "23872834902347283492034-20=423424",
                             QueuePass = "203984293042837823084375834583453",
