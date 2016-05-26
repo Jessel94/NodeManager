@@ -12,6 +12,7 @@ namespace NodeManager
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+                .UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_SERVER.URLS") ?? String.Empty)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
