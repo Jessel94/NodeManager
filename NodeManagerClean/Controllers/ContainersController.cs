@@ -41,9 +41,6 @@ namespace NodeManagerClean.Controllers
             container.QueueId = "90";
             container.LastChecked = DateTime.Today;
 
-            //Queue.Send.Main(container, "test1234");
-            container.QueueId = Queue.Recieve.Main(container);
-
             this.containerRepository.SaveContainer(container);
 
             var response = Request.CreateResponse(HttpStatusCode.Created, container);

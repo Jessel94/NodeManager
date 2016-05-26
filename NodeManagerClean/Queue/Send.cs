@@ -20,7 +20,6 @@ namespace NodeManagerClean.Queue
                 var queuesController = new QueuesController();
                 var queue = queuesController.GetQueue(QueueID);
             
-                //factory.HostName = queue.HostName;
                 factory.HostName = "145.24.222.140";
                 factory.UserName = "0885083";
                 factory.Password = "awesomePassword23";
@@ -54,9 +53,8 @@ namespace NodeManagerClean.Queue
             }
             catch(Exception e)
             {
-                //string Error = "Error sending message: " + e.ToString();
-                //return Error;
-                throw e;
+                string Error = "Error sending message: " + e.ToString();
+                return Error;
             }
         }
     }
