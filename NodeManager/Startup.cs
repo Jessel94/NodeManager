@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using NodeManager.Data;
 using NodeManager.Models;
 using NodeManager.Services;
+using NodeManager.Helpers;
+using Microsoft.AspNetCore.Http;
 
 namespace NodeManager
 {
@@ -48,6 +50,7 @@ namespace NodeManager
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddCaching();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -59,6 +62,7 @@ namespace NodeManager
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            HttpHelper.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
 
             if (env.IsDevelopment())
             {

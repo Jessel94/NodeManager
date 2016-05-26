@@ -1,26 +1,24 @@
-﻿using NodeManager.Models;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
+using NodeManager.Helpers;
+using NodeManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
 namespace NodeManager.Services
 {
     public class ContainerRepository
     {
         private const string CacheKey = "ContainerStore";
+        IMemoryCache memoryCache;
 
-        public ContainerRepository()
+        public ContainerRepository(IMemoryCache memoryCache)
         {
-            var ctx = HttpContext.Current;
-
-            if (ctx != null)
-            {
-                if (ctx.Cache[CacheKey] == null)
-                {
-                    var Containers = new Container[]
+            this.memoryCache = memoryCache;
+            var ExistingContainers = new Container[] { };
+            var Containers = new Container[]
                     {
                         new Container
                         {
@@ -44,55 +42,45 @@ namespace NodeManager.Services
                             LastChecked = DateTime.Today.AddHours(-1)
                         }
                     };
-                    ctx.Cache[CacheKey] = Containers;
-                }
+            if (memoryCache.TryGetValue(CacheKey, out ExistingContainers))
+            {
+                var cachedContainers = ExistingContainers;
+            }
+            else
+            {
+                memoryCache.Set(CacheKey, Containers);
             }
         }
 
-
         public Container[] GetAllContainers()
         {
-            var ctx = HttpContext.Current;
-
-            if (ctx != null)
+            var ExistingContainers = new Container[] { };
+            if (memoryCache.TryGetValue(CacheKey, out ExistingContainers))
             {
-                return (Container[])ctx.Cache[CacheKey];
+                var cachedContainers = ExistingContainers;
+                return cachedContainers;
             }
-
-            return new Container[]
-                {
-                    new Container
-                    {
-                        Id = 0,
-                        Name = "Placeholder",
-                        QueueId = "0",
-                        LastChecked = DateTime.Today
-                    }
-                };
+            else
+            {
+                return ExistingContainers;
+            }
         }
 
         public bool SaveContainer(Container container)
         {
-            var ctx = HttpContext.Current;
-
-            if (ctx != null)
+            var ExistingContainers = new Container[] { };
+            if (memoryCache.TryGetValue(CacheKey, out ExistingContainers))
             {
-                try
-                {
-                    var currentData = ((Container[])ctx.Cache[CacheKey]).ToList();
-                    currentData.Add(container);
-                    ctx.Cache[CacheKey] = currentData.ToArray();
+                var cachedContainers = ExistingContainers.ToList();
+                cachedContainers.Add(container);
+                memoryCache.Set(CacheKey, cachedContainers.ToArray());
 
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    return false;
-                }
+                return true;
             }
-
-            return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }

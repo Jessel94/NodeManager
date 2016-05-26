@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using NodeManager.Models;
 using NodeManager.Services;
 using System;
@@ -12,12 +13,12 @@ namespace NodeManager.Controllers
 {
     public class ContainersController : ApiController
     {
-
         private ContainerRepository containerRepository;
+        IMemoryCache memoryCache;
 
-        public ContainersController()
+        public ContainersController(IMemoryCache memoryCache)
         {
-            this.containerRepository = new ContainerRepository();
+            this.containerRepository = new ContainerRepository(memoryCache);
         }
 
         public Container[] Get()

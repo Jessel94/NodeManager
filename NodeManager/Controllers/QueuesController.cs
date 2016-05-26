@@ -1,4 +1,5 @@
-﻿using NodeManager.Models;
+﻿using Microsoft.Extensions.Caching.Memory;
+using NodeManager.Models;
 using NodeManager.Services;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,13 @@ namespace NodeManager.Controllers
 {
     public class QueuesController : ApiController
     {
-
         private QueueRepository queueRepository;
+        IMemoryCache memoryCache;
 
-        public QueuesController()
+        public QueuesController(IMemoryCache memoryCache)
         {
-            this.queueRepository = new QueueRepository();
+            this.memoryCache = memoryCache;
+            this.queueRepository = new QueueRepository(memoryCache);
         }
 
         public Models.Queue[] Get()

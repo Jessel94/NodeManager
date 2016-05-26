@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
+using NodeManager.Helpers;
 using NodeManager.Models;
 using System;
 using System.Collections.Generic;
@@ -10,88 +12,78 @@ namespace NodeManager.Services
     public class QueueRepository
     {
         private const string CacheKey = "QueueStore";
+        IMemoryCache memoryCache;
 
-        public QueueRepository()
+        public QueueRepository(IMemoryCache memoryCache)
         {
-            var ctx = HttpContext.Current;
-
-            if (ctx != null)
+            this.memoryCache = memoryCache;
+            var ExistingQueues = new Models.Queue[] { };
+            var Queues = new Models.Queue[]
             {
-                if (ctx.Cache[CacheKey] == null)
+                new Models.Queue
                 {
-                    var Queues = new Models.Queue[]
-                    {
-                        new Models.Queue
-                        {
-                            HostName = "http://145.24.222.140/",
-                            QueueId = "1",
-                            QueueName = "dockname",
-                            QueuePass = "dockpass",
-                        },
-                        new Models.Queue
-                        {
-                            HostName = "http://145.24.222.140/",
-                            QueueId = "45",
-                            QueueName = "swarmname",
-                            QueuePass = "swarmpass",
-                        },
-                        new Models.Queue
-                        {
-                            HostName = "http://145.24.222.140/",
-                            QueueId = "80",
-                            QueueName = "23872834902347283492034-20=423424",
-                            QueuePass = "203984293042837823084375834583453",
-                        }
-                };
-                    ctx.Cache[CacheKey] = Queues;
+                    HostName = "http://145.24.222.140/",
+                    QueueId = "1",
+                    QueueName = "dockname",
+                    QueuePass = "dockpass",
+                },
+                new Models.Queue
+                {
+                    HostName = "http://145.24.222.140/",
+                    QueueId = "45",
+                    QueueName = "swarmname",
+                    QueuePass = "swarmpass",
+                },
+                new Models.Queue
+                {
+                    HostName = "http://145.24.222.140/",
+                    QueueId = "80",
+                    QueueName = "23872834902347283492034-20=423424",
+                    QueuePass = "203984293042837823084375834583453",
                 }
+            };
+
+            if (memoryCache.TryGetValue(CacheKey, out ExistingQueues))
+            {
+                var cachedQueues = ExistingQueues;
+            }
+            else
+            {
+                memoryCache.Set(CacheKey, Queues);
             }
         }
 
 
         public Models.Queue[] GetAllQueues()
         {
-            var ctx = HttpContext.Current;
+            var ExistingQueues = new Models.Queue[] { };
 
-            if (ctx != null)
+            if (memoryCache.TryGetValue(CacheKey, out ExistingQueues))
             {
-                return (Models.Queue[])ctx.Cache[CacheKey];
+                var cachedQueues = ExistingQueues;
+                return cachedQueues;
             }
-
-            return new Models.Queue[]
-                {
-                    new Models.Queue
-                    {
-                        HostName = "temp",
-                        QueueId = "0",
-                        QueueName = "temp",
-                        QueuePass = "temp"
-                    }
-                };
+            else
+            {
+                return ExistingQueues;
+            }
         }
 
         public bool SaveQueue(Models.Queue queue)
         {
-            var ctx = HttpContext.Current;
-
-            if (ctx != null)
+            var ExistingQueues = new Models.Queue[] { };
+            if (memoryCache.TryGetValue(CacheKey, out ExistingQueues))
             {
-                try
-                {
-                    var currentData = ((Models.Queue[])ctx.Cache[CacheKey]).ToList();
-                    currentData.Add(queue);
-                    ctx.Cache[CacheKey] = currentData.ToArray();
+                var cachedQueues = ExistingQueues.ToList();
+                cachedQueues.Add(queue);
+                memoryCache.Set(CacheKey, cachedQueues.ToArray());
 
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    return false;
-                }
+                return true;
             }
-
-            return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }

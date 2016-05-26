@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETFramework,Version=v4.5.2/",
-    "signature": "6820fe7a5b847e31cae36cdaf49868380d2b331b"
+    "signature": "6756a57d8280f0176fd1d5946bafe970b406a00b"
   },
   "compilationOptions": {
     "defines": [
@@ -11,12 +11,15 @@
     ],
     "platform": "x64",
     "optimize": false,
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "debugType": "portable"
   },
   "targets": {
     ".NETFramework,Version=v4.5.2": {
       "NodeManager/1.0.0": {
         "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-rc2-final",
@@ -344,7 +347,7 @@
           "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-final"
         },
         "compile": {
@@ -439,7 +442,7 @@
       "Microsoft.AspNetCore.Mvc.Razor.Host/1.0.0-rc2-final": {
         "dependencies": {
           "Microsoft.AspNetCore.Razor.Runtime": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.FileProviders.Physical": "1.0.0-rc2-final"
         },
         "compile": {
@@ -449,7 +452,7 @@
       "Microsoft.AspNetCore.Mvc.TagHelpers/1.0.0-rc2-final": {
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.FileSystemGlobbing": "1.0.0-rc2-final",
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-final"
         },
@@ -672,7 +675,7 @@
       "Microsoft.EntityFrameworkCore/1.0.0-rc2-final": {
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-final",
           "Microsoft.Extensions.Logging": "1.0.0-rc2-final",
           "Remotion.Linq": "2.0.2",
@@ -740,22 +743,27 @@
           "lib/net451/Microsoft.EntityFrameworkCore.Tools.Core.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-final": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc1-final": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-final",
-          "System.Collections": "4.0.0.0",
-          "System.Threading": "4.0.0.0",
-          "System.Threading.Tasks": "4.0.0.0"
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
         },
         "compile": {
-          "lib/netstandard1.0/Microsoft.Extensions.Caching.Abstractions.dll": {}
+          "lib/net451/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-final": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc1-final": {
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Options": "1.0.0-rc2-final"
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
         },
         "compile": {
           "lib/net451/Microsoft.Extensions.Caching.Memory.dll": {}
@@ -788,6 +796,18 @@
         },
         "compile": {
           "lib/netstandard1.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/1.0.0-rc1-final": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "1.0.0-rc2-final",
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
+        },
+        "compile": {
+          "lib/net451/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration.EnvironmentVariables/1.0.0-rc2-final": {
@@ -988,6 +1008,20 @@
         },
         "compile": {
           "lib/netstandard1.0/Microsoft.Extensions.Options.dll": {}
+        }
+      },
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc1-final": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc1-final",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
+        },
+        "compile": {
+          "lib/net451/Microsoft.Extensions.OptionsModel.dll": {}
         }
       },
       "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc2-final": {
@@ -1541,6 +1575,8 @@
     ".NETFramework,Version=v4.5.2/": {
       "NodeManager/1.0.0": {
         "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0-rc2-final",
@@ -1868,7 +1904,7 @@
           "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.0-rc2-final",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-final"
         },
         "runtime": {
@@ -1963,7 +1999,7 @@
       "Microsoft.AspNetCore.Mvc.Razor.Host/1.0.0-rc2-final": {
         "dependencies": {
           "Microsoft.AspNetCore.Razor.Runtime": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.FileProviders.Physical": "1.0.0-rc2-final"
         },
         "runtime": {
@@ -1973,7 +2009,7 @@
       "Microsoft.AspNetCore.Mvc.TagHelpers/1.0.0-rc2-final": {
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.FileSystemGlobbing": "1.0.0-rc2-final",
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-final"
         },
@@ -2192,7 +2228,7 @@
       "Microsoft.EntityFrameworkCore/1.0.0-rc2-final": {
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-final",
           "Microsoft.Extensions.Logging": "1.0.0-rc2-final",
           "Remotion.Linq": "2.0.2",
@@ -2260,22 +2296,27 @@
           "lib/net451/Microsoft.EntityFrameworkCore.Tools.Core.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-final": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc1-final": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-final",
-          "System.Collections": "4.0.0.0",
-          "System.Threading": "4.0.0.0",
-          "System.Threading.Tasks": "4.0.0.0"
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
         },
         "runtime": {
-          "lib/netstandard1.0/Microsoft.Extensions.Caching.Abstractions.dll": {}
+          "lib/net451/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-final": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc1-final": {
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-final",
-          "Microsoft.Extensions.Options": "1.0.0-rc2-final"
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
         },
         "runtime": {
           "lib/net451/Microsoft.Extensions.Caching.Memory.dll": {}
@@ -2308,6 +2349,18 @@
         },
         "runtime": {
           "lib/netstandard1.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/1.0.0-rc1-final": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "1.0.0-rc2-final",
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration.EnvironmentVariables/1.0.0-rc2-final": {
@@ -2508,6 +2561,20 @@
         },
         "runtime": {
           "lib/netstandard1.0/Microsoft.Extensions.Options.dll": {}
+        }
+      },
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc1-final": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc1-final",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.CSharp": "4.0.0.0",
+          "System": "4.0.0.0",
+          "System.Core": "4.0.0.0",
+          "mscorlib": "4.0.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.OptionsModel.dll": {}
         }
       },
       "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc2-final": {
@@ -3240,15 +3307,15 @@
       "serviceable": true,
       "sha512": "sha512-0L30NEnJaFdbc8a+B9nLb2kkMfnz94RFvJ8JWlO1u73wRChEafB7wLozyhCJFZziEEp8IbFYTzF3omR6gDfsmA=="
     },
-    "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-final": {
+    "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc1-final": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Seu7cdYLYDFjYGd9KgzbAa5G6Xkzw6f6mSJjWemal1qNL505ktHMSbve6IPGScipL578rPwPTVqrTWWKIvmvLg=="
+      "sha512": "sha512-WlNfPuf/8Q7DzMiOHjiT9Ha2IYdguLGfHT/2C/p9KzviCKXaqfrIdI6X9w5MmCuiYRucqK+iM5cIWKHQ1mmZrg=="
     },
-    "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-final": {
+    "Microsoft.Extensions.Caching.Memory/1.0.0-rc1-final": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-G6KkTMUiChu9RaURYmNbkKc/cIvhj38jfVzoVtoSR0Aw2KzRCtJiW80xrLaNEgzl2Eu6BipCCy9DVNa7cFZhLQ=="
+      "sha512": "sha512-KQFkXdBieLObHr1+ld0FVOLQLgVFcrhn6qIixsmP09TyEw2VaGPrzIiBVJSzyKfaE2MVJlshDvfdvcfSE/zl3g=="
     },
     "Microsoft.Extensions.CommandLineUtils/1.0.0-rc2-final": {
       "type": "package",
@@ -3264,6 +3331,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-Q871jpweVxec1zvUuK4RoXGRRXCZsp/f+6SDUSi8DQ95KcT8yKe2ZSoq2S2xnwoKFUepg2B6Yr3ToXD2v27zNA=="
+    },
+    "Microsoft.Extensions.Configuration.Binder/1.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tuIi7cRq6lbpCybL+z9vamz/KbM+nN9nyJ2Id5bKCdxKDNMnKb9PdMxJ+0DHc8p6fP00PyQucYuN5EpxsYrX6Q=="
     },
     "Microsoft.Extensions.Configuration.EnvironmentVariables/1.0.0-rc2-final": {
       "type": "package",
@@ -3364,6 +3436,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-Sj7WVNsiMbULRas/DGKsZ3u6GA29AFAWGZwitVFQgIf/ppzM8VfnFyCRkSnwMA0gTD4u09scnQkKyl6Yi8kNuQ=="
+    },
+    "Microsoft.Extensions.OptionsModel/1.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IhK5pNqRgakrwiv5OrB6hv7e6+TZzYqfJr40Qri0Xgi+oXJklNgbA5eHvzZrghdHfqfSqcvLWtWD0ri6e8Eo1w=="
     },
     "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc2-final": {
       "type": "package",

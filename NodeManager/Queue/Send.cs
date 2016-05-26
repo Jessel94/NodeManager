@@ -17,8 +17,8 @@ namespace NodeManager.Queue
             {
                 var factory = new ConnectionFactory();
 
-                var queuesController = new QueuesController();
-                var queue = queuesController.GetQueue(QueueID);
+                //var queuesController = new QueuesController();
+                //var queue = queuesController.GetQueue(QueueID);
             
                 factory.HostName = "145.24.222.140";
                 factory.UserName = "0885083";
