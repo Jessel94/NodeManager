@@ -11,38 +11,48 @@ namespace NodeManagerClean.Queue
 {
     public class Send
     {
-        public static void Main(Container container, string message)
+        public static string Main(string QueueID, string Message)
         {
-            var factory = new ConnectionFactory();
-
-            var QueueID = container.QueueId;
-            var queuesController = new QueuesController();
-            var queue = queuesController.GetQueue(QueueID);
-            //factory.HostName = queue.HostName;
-            factory.HostName = "localhost";
-
-            factory.Port = AmqpTcpEndpoint.UseDefaultPort;
-
-            using (var connection = factory.CreateConnection())
-            using (var channel = connection.CreateModel())
+            try
             {
-                channel.QueueDeclare(queue: container.QueueId,
-                                     durable: true,
-                                     exclusive: false,
-                                     autoDelete: false,
-                                     arguments: null);
+                var factory = new ConnectionFactory();
 
-                var body = Encoding.UTF8.GetBytes(message);
+                var queuesController = new QueuesController();
+                var queue = queuesController.GetQueue(QueueID);
+            
+                //factory.HostName = queue.HostName;
+                factory.HostName = "localhost";
 
-                var properties = channel.CreateBasicProperties();
-                properties.Persistent = true;
+                factory.Port = AmqpTcpEndpoint.UseDefaultPort;
 
-                channel.BasicPublish(exchange: "",
-                                     routingKey: container.QueueId,
-                                     basicProperties: properties,
-                                     body: body);
+                using (var connection = factory.CreateConnection())
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: QueueID,
+                                         durable: true,
+                                         exclusive: false,
+                                         autoDelete: false,
+                                         arguments: null);
 
-                Console.WriteLine(" [x] Sent {0}", message);
+                    var body = Encoding.UTF8.GetBytes(Message);
+
+                    var properties = channel.CreateBasicProperties();
+                    properties.Persistent = true;
+
+                    channel.BasicPublish(exchange: "",
+                                         routingKey: QueueID,
+                                         basicProperties: properties,
+                                         body: body);
+
+                    Console.WriteLine(" [x] Sent {0}", Message);
+                    string response = "Message " + Message + " has been added to the queue.";
+                    return response;
+                }
+            }
+            catch(Exception e)
+            {
+                string Error = "Error sending message: " + e.ToString();
+                return Error;
             }
         }
     }
