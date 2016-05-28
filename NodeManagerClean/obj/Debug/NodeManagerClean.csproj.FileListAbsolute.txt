@@ -13,12 +13,17 @@ F:\GitHub\NodeManager\NodeManagerClean\bin\roslyn\VBCSCompiler.exe.config
 F:\GitHub\NodeManager\NodeManagerClean\bin\NodeManagerClean.dll.config
 F:\GitHub\NodeManager\NodeManagerClean\bin\NodeManagerClean.dll
 F:\GitHub\NodeManager\NodeManagerClean\bin\NodeManagerClean.pdb
+F:\GitHub\NodeManager\NodeManagerClean\bin\EasyNetQ.dll
 F:\GitHub\NodeManager\NodeManagerClean\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 F:\GitHub\NodeManager\NodeManagerClean\bin\Newtonsoft.Json.dll
+F:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.dll
+F:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.ServiceModel.dll
 F:\GitHub\NodeManager\NodeManagerClean\bin\System.Net.Http.Formatting.dll
 F:\GitHub\NodeManager\NodeManagerClean\bin\System.Web.Http.dll
 F:\GitHub\NodeManager\NodeManagerClean\bin\System.Web.Http.WebHost.dll
+F:\GitHub\NodeManager\NodeManagerClean\bin\EasyNetQ.xml
 F:\GitHub\NodeManager\NodeManagerClean\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.xml
 F:\GitHub\NodeManager\NodeManagerClean\bin\Newtonsoft.Json.xml
 F:\GitHub\NodeManager\NodeManagerClean\bin\System.Net.Http.Formatting.xml
 F:\GitHub\NodeManager\NodeManagerClean\bin\System.Web.Http.xml
@@ -26,8 +31,3 @@ F:\GitHub\NodeManager\NodeManagerClean\bin\System.Web.Http.WebHost.xml
 F:\GitHub\NodeManager\NodeManagerClean\obj\Debug\NodeManagerClean.csprojResolveAssemblyReference.cache
 F:\GitHub\NodeManager\NodeManagerClean\obj\Debug\NodeManagerClean.dll
 F:\GitHub\NodeManager\NodeManagerClean\obj\Debug\NodeManagerClean.pdb
-F:\GitHub\NodeManager\NodeManagerClean\bin\EasyNetQ.dll
-F:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.dll
-F:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.ServiceModel.dll
-F:\GitHub\NodeManager\NodeManagerClean\bin\EasyNetQ.xml
-F:\GitHub\NodeManager\NodeManagerClean\bin\RabbitMQ.Client.xml

@@ -50,7 +50,8 @@ namespace NodeManager
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-            services.AddCaching();
+            //services.AddCaching();
+            services.AddMemoryCache();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
