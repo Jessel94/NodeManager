@@ -2,6 +2,8 @@
 using System;
 using System.Text;
 
+using NodeManagerCore.Models;
+
 namespace NodeManagerCore.Queue
 {
     public class Send
@@ -34,6 +36,8 @@ namespace NodeManagerCore.Queue
                                          exclusive: false,
                                          autoDelete: false,
                                          arguments: null);
+
+                    var json = new { action = "container", docker = new { run = new { name = "name", environment = new { key = "value" }, image = "image", Detached = "bool" } } };
 
                     var body = Encoding.UTF8.GetBytes(Message);
 

@@ -7,7 +7,7 @@ using NodeManagerCore.Queue;
 namespace NodeManagerCore.Controllers
 {
     [Route("api/[controller]")]
-    public class CommandController : ApiController
+    public class CommandController : Controller
     {
         // GET api/Command
         [HttpGet]
